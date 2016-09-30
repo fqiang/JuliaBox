@@ -39,6 +39,9 @@ RUN apt-get update \
     libmysqlclient-dev \
     && apt-get clean
 
+RUN apt-get remove -y openmpi-*
+RUN apt-get install -y mpich2
+
 ENV LANG en_US.utf8
 
 RUN pip install tornado \
