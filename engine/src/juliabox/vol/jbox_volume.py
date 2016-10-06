@@ -268,6 +268,24 @@ class JBoxVol(LoggerMixin):
                 fout.write(replacement)
         os.remove(filepath_temp)
 
+    #def setup_env_link(self):
+    #    env_link = os.path.join(self.disk_path, ".bashrc")
+    #    env_path = os.path.join("/opt", "juliabox", ".juliabox", ".bashrc")
+    #    old_env_path = os.path.join("/home", "juser", ".juliabox", ".bashrc")
+    #    if os.path.lexists(env_link) and os.path.realpath(env_link) == old_env_path:
+    #        os.remove(env_link)
+    #    if not (os.path.exists(env_link) or os.path.lexists(env_link)):
+    #        os.symlink(env_path, env_link)
+    
+    def setup_structjump_link(self):
+        sj_link = os.path.join(self.disk_path, "structjump")
+        sj_path = os.path.join("/opt", "juliabox", ".juliabox", "structjump")
+        old_sj_path = os.path.join("/home", "juser", ".juliabox", "structjump")
+        if os.path.lexists(sj_link) and os.path.realpath(sj_link) == old_sj_path:
+            os.remove(sj_link)
+        if not (os.path.exists(sj_link) or os.path.lexists(sj_link)):
+            os.symlink(sj_path, sj_link)
+    
     def setup_tutorial_link(self):
         tut_link = os.path.join(self.disk_path, "tutorial")
         tut_path = os.path.join("/opt", "juliabox", ".juliabox", "tutorial")
@@ -284,6 +302,9 @@ class JBoxVol(LoggerMixin):
             if not os.path.exists(profile_path):
                 continue
             nbconfig = os.path.join(profile_path, 'ipython_notebook_config.py')
+            #wsock_cfg = "c.NotebookApp.websocket_url = '" + JBoxVol.NOTEBOOK_WEBSOCK_PROTO + \
+            #            "aws.ermiaolive.com" + "'\n"
+
             wsock_cfg = "c.NotebookApp.websocket_url = '" + JBoxVol.NOTEBOOK_WEBSOCK_PROTO + \
                         Compute.get_alias_hostname() + "'\n"
             JBoxVol.replace_in_file(nbconfig, "c.NotebookApp.websocket_url", wsock_cfg)

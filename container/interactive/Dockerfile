@@ -40,6 +40,10 @@ RUN mkdir /mnt/data
 RUN mkdir /opt/juliabox
 
 RUN echo "ulimit -u 2048 -n 256" >> /etc/bash.bashrc
+RUN echo "export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda/lib:/usr/local/cuda/lib64:/usr/local/cuda/nvvm/lib64:/opt/juliabox/.juliabox/workspace/PIPS/build_pips/PIPS-NLP" >> /etc/bash.bashrc
+RUN echo "export PIPS_NLP_PAR_SHARED_LIB=/opt/juliabox/.juliabox/workspace/PIPS/build_pips/PIPS-NLP/libparpipsnlp.so" >> /etc/bash.bashrc
+RUN echo "export PIPS_NLP_SHARED_LIB=/opt/juliabox/.juliabox/workspace/PIPS/build_pips/PIPS-NLP/libpipsnlp.so" >> /etc/bash.bashrc
+
 
 USER juser
 ENV HOME /home/juser
