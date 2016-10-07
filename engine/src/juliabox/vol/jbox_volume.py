@@ -268,14 +268,22 @@ class JBoxVol(LoggerMixin):
                 fout.write(replacement)
         os.remove(filepath_temp)
 
-    #def setup_env_link(self):
-    #    env_link = os.path.join(self.disk_path, ".bashrc")
-    #    env_path = os.path.join("/opt", "juliabox", ".juliabox", ".bashrc")
-    #    old_env_path = os.path.join("/home", "juser", ".juliabox", ".bashrc")
-    #    if os.path.lexists(env_link) and os.path.realpath(env_link) == old_env_path:
-    #        os.remove(env_link)
-    #    if not (os.path.exists(env_link) or os.path.lexists(env_link)):
-    #        os.symlink(env_path, env_link)
+    #def setup_powergriddata_link(self):
+    #    powergrid_link1 = os.path.join("/opt","juliabox", ".juliabox", "structjump","data")
+        #powergrid_link2 = os.path.join("/opt","juliabox", ".juliabox", "structjump_console","data")
+    #    powergrid_path = os.path.join("/opt", "julia_packages", ".julia", "v0.4","StructJuMP","examples","PowerGrid","data")
+    #	os.symlink(powergrid_path, powergrid_link1)
+	#/opt/julia_packages/.julia/v0.4/StructJuMP/examples/PowerGrid/data 
+	#/opt/juliabox/.juliabox/structjump  
+        #old_powergrid_path = os.path.join("/home", "juser", ".juliabox", "data")
+        #if os.path.lexists(powergrid_link1) and os.path.realpath(powergrid_link1) == old_powergrid_path:
+        #    os.remove(powergrid_link1)
+        #if os.path.lexists(powergrid_link2) and os.path.realpath(powergrid_link2) == old_powergrid_path:
+        #    os.remove(powergrid_link2)
+        #if not (os.path.exists(powergrid_link1) or os.path.lexists(powergrid_link1)):
+        #    os.symlink(powergrid_path, powergrid_link1)
+        #if not (os.path.exists(powergrid_link2) or os.path.lexists(powergrid_link2)):
+        #    os.symlink(powergrid_path, powergrid_link2)
     
     def setup_structjump_link(self):
         sj_link = os.path.join(self.disk_path, "structjump")
@@ -285,6 +293,15 @@ class JBoxVol(LoggerMixin):
             os.remove(sj_link)
         if not (os.path.exists(sj_link) or os.path.lexists(sj_link)):
             os.symlink(sj_path, sj_link)
+
+    def setup_structjump_console_link(self):
+        sjc_link = os.path.join(self.disk_path, "structjump_console")
+        sjc_path = os.path.join("/opt", "juliabox", ".juliabox", "structjump_console")
+        old_sjc_path = os.path.join("/home", "juser", ".juliabox", "structjump_console")
+        if os.path.lexists(sjc_link) and os.path.realpath(sjc_link) == old_sjc_path:
+            os.remove(sjc_link)
+        if not (os.path.exists(sjc_link) or os.path.lexists(sjc_link)):
+            os.symlink(sjc_path, sjc_link)
     
     def setup_tutorial_link(self):
         tut_link = os.path.join(self.disk_path, "tutorial")

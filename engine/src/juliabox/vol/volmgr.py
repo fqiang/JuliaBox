@@ -153,8 +153,10 @@ class VolMgr(LoggerMixin):
         disk = plugin.get_disk_for_user(email)
 
         try:
-            disk.setup_tutorial_link()
+            #disk.setup_tutorial_link()
             disk.setup_structjump_link()
+            disk.setup_structjump_console_link()
+            # disk.setup_powergriddata_link()
             # disk.setup_env_link()
             disk.gen_ssh_key()
             disk.gen_gitconfig()

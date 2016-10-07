@@ -14,4 +14,7 @@ for i in 1:numScen
     @NLobjective(bl, Min, y[1]^2 + y[2]^2 + y[1]*y[2])
 end
 
-solve(m, solver="PipsNlp")
+solve(m, solver="PipsNlp")  #solve with PipsNlp parallel solver library
+solve(m, solver="PipsNlpSerial")  #solve with PipsNlp serial solver library
+solve(m, solver="Ipopt")  #solve with Ipopt solver library
+
